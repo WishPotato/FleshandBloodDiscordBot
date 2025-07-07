@@ -113,7 +113,7 @@ module.exports = {
                 flags: MessageFlags.Ephemeral,
             });
         }
-        const playerProfile = profiles.find((p) => (p.id = profileData.id));
+        const playerProfile = profiles.find((p) => p.id === interaction.user.id);
 
         const inputSell = interaction.options.getString("sell");
         const inputBuy = interaction.options.getString("buy");
