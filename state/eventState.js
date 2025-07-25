@@ -1,4 +1,4 @@
-let eventUnlocked = true;
+let eventUnlocked = false;
 
 function getEventState() {
   return eventUnlocked;

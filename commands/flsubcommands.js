@@ -43,7 +43,7 @@ module.exports = {
             await saveData(eventFLPath, profiles);
             console.log(`Player added: \n`, JSON.stringify(newPlayer, null, 2));
         }
-        const userProfile = profiles.find((p) => (p.id = interaction.user.id));
+        const userProfile = profiles.find((p) => (p.id === interaction.user.id));
         const team = userProfile.fantasyTeam;
         // SHOW TEAM
         if (subcommand === "showteam") {

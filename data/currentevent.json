@@ -1,8 +1,9 @@
 {
-  "lastRound": 20,
+  "lastRound": 18,
   "eventName": "PT-Singapore2025",
   "internationalEvent": true,
   "leaderboard": "https://fabtcg.com/en/leaderboards/?mode=elo_all&page=",
   "points": 450,
-  "champion": "Azalea, Ace in the Hole"
+  "champion": "Gravy Bones, Shipwrecked Looter",
+  "open": false
 }

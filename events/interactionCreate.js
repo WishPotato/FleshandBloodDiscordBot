@@ -37,7 +37,7 @@ module.exports = {
         }
 
         const cmdName = interaction.commandName;
-        const restrictedCommands = ['buy', 'sell', 'showteam', 'reset', 'champion'];
+        const restrictedCommands = ['buy', 'sell', 'showteam', 'reset', 'champion', 'showleaderboard'];
 
         if (interaction.isChatInputCommand()) {
             

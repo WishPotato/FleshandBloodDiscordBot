@@ -43,13 +43,6 @@ module.exports = {
         }
     },
     async execute(interaction, profileData) {
-        if (!getEventState()) {
-            return interaction.reply({
-                content:
-                    "🔒 Admin has **LOCKED** the event. Team editing has been disabled.",
-                flags: MessageFlags.Ephemeral,
-            });
-        }
         if(interaction.options.getString("champion")){
             const inputChampion = interaction.options.getString("champion");
             const eventInfo = await getCurrentEventData();

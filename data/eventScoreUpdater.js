@@ -1,8 +1,8 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
-const { loadData, saveData } = require('./dataFunctions/dataFunctions');
+const { loadData, saveData } = require("./dataFunctions/dataFunctions");
 
-let url = "https://fabtcg.com/en/coverage/calling-bologna-2025";
+let url = "https://fabtcg.com/en/coverage/pro-tour-singapore-2025";
 const playerDataFile = "data/events/PT-Singapore2025.json";
 const eventDataFile = "data/currentevent.json";
 let data;
@@ -31,7 +31,7 @@ async function getAndUpdateData(roundNum) {
                     section = $(el).find(".tournament-coverage__p1");
                 } else if (result.includes("Player 2 Wins")) {
                     section = $(el).find(".tournament-coverage__p2");
-                } else if (result.includes("Draw")) {
+                } else if (result.includes("Draw") || result.includes("Double Loss")) {
                     section = "Draw";
                 }
 
@@ -48,16 +48,24 @@ async function getAndUpdateData(roundNum) {
                 }
             });
             // Check X rounds. Update every until a round has not finished
+            let roundComplete = true;
             for (let i = 0; i < winners.length; i++) {
                 if (winners[i] === null) {
-                    let bonusinfo = "";
-                    if (eventData.lastRound !== x) { 
-                        await saveData(playerDataFile, data);
-                        eventData.lastRound = x;
-                        await saveData(eventDataFile, eventData);
-                        bonusinfo = `Round ${x} was updated`;
-                    }
-                    return `❌ Round ${roundNum} has not finished yet!... ${bonusinfo}`;
+                    roundComplete = false;
+                    break;
+                }
+            }
+
+            if (!roundComplete) {
+                if (eventData.lastRound !== x - 1) {
+                    await saveData(playerDataFile, data);
+                    eventData.lastRound = x - 1;
+                    await saveData(eventDataFile, eventData);
+                    return `❌ Round ${x} is not complete yet. Round ${
+                        x - 1
+                    } was updated.`;
+                } else {
+                    return `❌ Round ${x} is not complete yet. No new rounds updated.`;
                 }
             }
 

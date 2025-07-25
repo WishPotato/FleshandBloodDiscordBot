@@ -85,10 +85,8 @@ module.exports = {
                     sortLeaderboard(leaderboard);
                 }
                 let txt = "The Leaderboard is as following:";
-                let rank = 0;
                 for (let i = 0; i < leaderboard.length; i++) {
-                    rank++;
-                    txt += `\n${rank}. <@${leaderboard[i].id}> - ${leaderboard[i].points}`;
+                    txt += `\n${i}. <@${leaderboard[i].id}> - ${leaderboard[i].points}`;
                 }
                 console.log(
                     "Leaderboard has been published by " + interaction.user.tag

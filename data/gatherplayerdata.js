@@ -4,16 +4,17 @@ const fs = require("fs").promises;
 const { loadData, saveData} = require('./dataFunctions/dataFunctions');
 
 const eventDataFile = "./data/currentevent.json";
-const maxPageRead = 6;
+const maxPageRead = 10;
 
 // Sort Data into the json specifically for FABTCG.COM Leaderboards
 function SortDataFromFABTCG(data) {
     data = data.replaceAll("Dr.", "Dr~");
     return data
-        .replaceAll(" ", "")
+        .replace(`/\s+/g`, " ")
         .replaceAll("\n", ".")
         .replaceAll("..", ".")
         .replaceAll("\"", "")
+        .trim()
         .slice(1, -1);
 }
 
